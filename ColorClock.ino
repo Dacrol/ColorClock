@@ -1,5 +1,4 @@
 #include <Adafruit_NeoPixel.h>
-#include <string.h>
 #define PIN 9
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(16, PIN, NEO_GRB + NEO_KHZ800);
 int rgb[3];
