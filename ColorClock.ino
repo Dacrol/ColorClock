@@ -7,22 +7,23 @@ int r = 0;
 int g = 0;
 int b = 0;
 boolean c = 0;
-int tol = 125;
-int wtol = 200;
+int tol = 125; //Tolerance for how much the color should change each cycle
+int wtol = 200; //Tolerance for how close a color can be to white
 void setup()
 {
   // Serial.begin(9600);
   strip.begin();
   strip.setBrightness(255);
   strip.show();
-  randomSeed(analogRead(0));
+  randomSeed(analogRead(0)); //Randomize seed by reading pin 0
 }
 
 void loop()
 {
-  wipeRandom(375);
+  wipeRandom(3750); //60 seconds / 16 pixels = 3750 ms per pixel
 }
 
+//Randomize color and fill, wait defines time per pixel
 void wipeRandom(int wait)
 {
   c = 0;
@@ -66,14 +67,15 @@ void colorWipe(int rgb[3], int wait)
   double steps = 75.0;
   for (int i = 7; i >= 0; i--)
   {
-    fillPixel(steps, wait, i, rgb);
+    fillPixel(steps, wait, i, rgb); //First strip
   }
   for (int i = 15; i >= 8; i--)
   {
-    fillPixel(steps, wait, i, rgb);
+    fillPixel(steps, wait, i, rgb); //Second strip
   }
 }
 
+//Transitions one pixel gradually
 void fillPixel(double steps, int wait, int pixel, int rgb[3])
 {
   for (double i = 1.0; i <= steps; i++)
